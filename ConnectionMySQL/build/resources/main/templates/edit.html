@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <h1>Edit Todo</h1>
+</head>
+<body>
+
+<h3 th:text="'You are editing ' +${todos.id} + ' - ' + ${todos.title} + ' - Done: '  + ${todos.done} + ' - Urgent: '  + ${todos.urgent}"></h3>
+
+<form th:action = "@{/{id}/edit(id=${todos.id})}" action = "#" method = "post">
+    <div class = "input-field">
+        <label for = "title">Title</label>
+        <input type="text" id = "title" name = "title" th:placeholder ="${todos.title}">
+    </div>
+    <input type="checkbox" id="done" th:name="done" th:checked="${todos.done}">
+    <label for="done"> Is it done yet?</label><br>
+    <input type="checkbox" id="urgent" th:name="urgent" th:checked="${todos.urgent}">
+    <label for="urgent">Is it urgent?</label><br>
+    <div class = "selector">
+        <p>Select Assignee for this task: </p>
+        <select th:name="assignee">
+            <option th:each="assignee : ${assignees}" th:text="${assignee.name}"></option>
+        </select>
+    </div>
+    <div class = "input-field">
+        <input type = "submit" value = "Submit">
+    </div>
+</form>
+
+<div>            <button type="button" th:onclick="|window.location.href='/list'|">Cancel</button>         </div>
+
+</body>
+</html>

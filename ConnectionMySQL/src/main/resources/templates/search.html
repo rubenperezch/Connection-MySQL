@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <h1>Todos for today:</h1>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Urgent</th>
+        <th>Done</th>
+    </tr>
+    <div th:each="todo : ${searches}">
+        <tr>
+
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${todo.urgent}"></td>
+            <td th:text="${todo.done}"></td>
+            <td th:action = "@{/delete}" action = "#" method = "post">
+                <a th:href="'/delete?id=' + ${todo.id}" id="id">delete</a>
+            </td>
+            <td th:action = "@{/edit}" action = "#" method = "post">
+                <a th:href="'/edit?id=' + ${todo.id}" id="id2">edit</a>
+            </td>
+        </tr>
+    </div>
+</table>
+
+<div>            <button type="button" th:onclick="|window.location.href='/add'|">ADD TODO</button>         </div>
+
+<div>            <button type="button" th:onclick="|window.location.href='/list'|">BACK TO LIST</button>         </div>
+</body>
+</html>

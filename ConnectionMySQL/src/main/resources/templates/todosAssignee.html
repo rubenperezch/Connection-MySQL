@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos by Assignee</title>
+</head>
+<body>
+
+<h3 th:text="'Assignee: '+${assignees}"></h3>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Urgent</th>
+        <th>Done</th>
+    </tr>
+    <div th:each="todo : ${todosList}">
+        <tr>
+
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${todo.urgent}"></td>
+            <td th:text="${todo.done}"></td>
+
+        </tr>
+    </div>
+
+</table>
+
+<div>            <button type="button" th:onclick="|window.location.href='/assignees'|">BACK TO ASSIGNEES</button>         </div>
+<div>            <button type="button" th:onclick="|window.location.href='/list'|">BACK TO LIST</button>         </div>
+
+</body>
+</html>

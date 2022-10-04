@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <h1>Assignees</h1>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+</head>
+<body>
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+
+    </tr>
+    <div th:each="assignee : ${assignees}">
+        <tr>
+
+            <td th:text="${assignee.id}"></td>
+            <td th:text="${assignee.name}"></td>
+            <td th:text="${assignee.email}"></td>
+            <td>
+                <a th:href="'/deleteAssignee?id=' + ${assignee.id}" id="id">delete</a>
+            </td>
+            <td>
+                <a th:href="'/' + ${assignee.id} + '/assigneeEdit'" id="id">edit</a>
+            </td>
+            <td>
+                <a th:href="'/' + ${assignee.id} + '/todosAssignee'" id="id">view todos</a>
+            </td>
+        </tr>
+    </div>
+</table>
+
+<form th:action = "@{/assignees}" action = "#" method = "post">
+    <div class = "input-field">
+        <label for = "name">Name</label>
+        <input type="text" id = "name" name = "name">
+    </div>
+    <div class = "input-field">
+        <label for = "email">Email</label>
+        <input type="text" id = "email" name = "email">
+    </div>
+    <div class = "input-field">
+        <input type = "submit" value = "Add Assignee">
+    </div>
+</form>
+
+<div>            <button type="button" th:onclick="|window.location.href='/list'|">BACK TO LIST</button>         </div>
+
+
+
+</body>
+</html>

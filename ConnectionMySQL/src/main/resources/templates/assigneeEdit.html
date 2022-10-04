@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+  <h1>Edit Assignee</h1>
+</head>
+<body>
+
+<h3 th:text="'You are editing ' +${assignees.id} + ' - ' + ${assignees.name} + ' - Email: '  + ${assignees.email}"></h3>
+
+<form th:action = "@{/{id}/assigneeEdit(id=${assignees.id})}" action = "#" method = "post">
+  <div class = "input-field">
+    <label for = "name">Title: </label>
+    <input type="text" id = "name" name = "name" th:placeholder ="${assignees.name}">
+  </div>
+  <div class = "input-field">
+    <label for = "email">Email: </label>
+    <input type="text" id = "email" name = "email" th:placeholder = "${assignees.email}">
+  </div>
+
+  <div class = "input-field">
+    <input type = "submit" value = "Submit">
+  </div>
+</form>
+
+<div>            <button type="button" th:onclick="|window.location.href='/assignees'|">Cancel</button>         </div>
+
+</body>
+</html>
